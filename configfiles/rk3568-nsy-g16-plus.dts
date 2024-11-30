@@ -371,7 +371,6 @@
 			clocks = <0x02 0x00>;
 			operating-points-v2 = <0x03>;
 			cpu-idle-states = <0x04>;
-			cpu-supply = <0x05>;
 			phandle = <0x0b>;
 		};
 
@@ -383,7 +382,6 @@
 			clocks = <0x02 0x00>;
 			operating-points-v2 = <0x03>;
 			cpu-idle-states = <0x04>;
-			cpu-supply = <0x05>;
 			phandle = <0x0c>;
 		};
 
@@ -395,7 +393,6 @@
 			clocks = <0x02 0x00>;
 			operating-points-v2 = <0x03>;
 			cpu-idle-states = <0x04>;
-			cpu-supply = <0x05>;
 			phandle = <0x0d>;
 		};
 
@@ -1280,7 +1277,7 @@
 					regulator-boot-on;
 					regulator-min-microvolt = <0x7a120>;
 					regulator-max-microvolt = <0x149970>;
-					regulator-init-microvolt = <0xdbba0>;
+					regulator-init-microvolt = <0xf4240>;
 					regulator-ramp-delay = <0x1771>;
 					regulator-initial-mode = <0x02>;
 					regulator-name = "vdd_gpu";
@@ -1307,7 +1304,7 @@
 					regulator-boot-on;
 					regulator-min-microvolt = <0x7a120>;
 					regulator-max-microvolt = <0x149970>;
-					regulator-init-microvolt = <0xdbba0>;
+					regulator-init-microvolt = <0xf4240>;
 					regulator-ramp-delay = <0x1771>;
 					regulator-initial-mode = <0x02>;
 					regulator-name = "vdd_npu";
@@ -5906,7 +5903,7 @@
 	};
 
 	chosen {
-		bootargs = "earlycon=uart8250,mmio32,0xfe660000 console=ttyFIQ0 root=PARTUUID=614e0000-0000 rw rootwait";
+		bootargs = "earlycon=uart8250,mmio32,0xfe660000 console=ttyFIQ0 rootwait";
 	};
 
 	fiq-debugger {
