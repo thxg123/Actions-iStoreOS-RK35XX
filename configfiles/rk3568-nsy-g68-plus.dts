@@ -741,19 +741,19 @@
 // https://lists.denx.de/pipermail/u-boot/2023-August/525793.html
 // 这个pcie,可能需要打补丁,使用radxa 版本
 &pcie3x1 {
-        vpcie3v3-supply = <&vcc3v3_pcie>;
-        reset-gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
+		vpcie3v3-supply = <&vcc3v3_pcie>;
+		reset-gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
 		rockchip,bifurcation;
 		num-lanes = <0x1>; /*可能不生效,但是拆分需要打补丁,如果是吧,打补丁*/
 		pinctrl-0 = <&pcie30x1_reset_h>;
-        status = "okay";
+		status = "okay";
 };
 
 //fe280000
 &pcie3x2 {
-        vpcie3v3-supply = <&vcc3v3_pcie>;
-        reset-gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-        status = "okay";
+		vpcie3v3-supply = <&vcc3v3_pcie>;
+		reset-gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
+		status = "okay";
 		rockchip,bifurcation;
 		num-lanes = <0x1>;
 		pinctrl-0 = <&pcie30x2_reset_h>;
@@ -761,12 +761,12 @@
 
 &pcie30phy {
 		data-lanes = <1 2>; //配置lan的通道树
-        status = "okay";
+		status = "okay";
 };
 
 //使能pcie 2.0x1 phy
-&combphy2 { //combphy2 kernel name
-        status = "okay";
+&combphy2_psq { //combphy2_psq kernel name
+		status = "okay";
 };
 
 &pcie2x1 {
@@ -774,7 +774,7 @@
 		pinctrl-0 = <&pcie2x1_reset_h>;
 		//for kernel.dts
 		rockchip,perst-inactive-ms = <500>;
-        status = "okay";
+		status = "okay";
 };
 
 &mdio0 {
@@ -808,7 +808,7 @@
 };
 
 // form lintel,使能
-&combphy1 {
+&combphy1_usq {
 	rockchip,sgmii-mac-sel = <1>;
 	status = "okay";
 };
@@ -832,7 +832,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&gmac1m1_miim>;
 	power-domains = <&power RK3568_PD_PIPE>;
-	phys = <&combphy1 PHY_TYPE_SGMII>;
+	phys = <&combphy1_usq PHY_TYPE_SGMII>;
 
 	fixed-link {
 		speed = <1000>;
@@ -847,80 +847,37 @@
 
 &usb_host0_ohci {
 	status = "okay";
-	snps,dis_enblslpm_quirk;
-	snps,dis-u1-entry-quirk;
-	snps,dis-u2-entry-quirk;
-	snps,dis-u2-freeclk-exists-quirk;
-	snps,dis-del-phy-power-chg-quirk;
-	snps,dis-tx-ipgap-linecheck-quirk;
-	snps,dis_rxdet_inp3_quirk;
-	snps,xhci-trb-ent-quirk;
-	snps,parkmode-disable-ss-quirk;
-	quirk-skip-phy-init;
-};
-
-&usb_host0_xhci {
-	dr_mode = "host";//自动检测
-	//extcon = <&combphy0>;
-	status = "okay";
-	extcon = <&usb2phy0>; //超过rxda测试
-	snps,dis_enblslpm_quirk;
-	snps,dis-u1-entry-quirk;
-	snps,dis-u2-entry-quirk;
-	snps,dis-u2-freeclk-exists-quirk;
-	snps,dis-del-phy-power-chg-quirk;
-	snps,dis-tx-ipgap-linecheck-quirk;
-	snps,dis_rxdet_inp3_quirk;
-	snps,xhci-trb-ent-quirk;
-	snps,parkmode-disable-ss-quirk;
-	quirk-skip-phy-init;
-};
-
-&usb_host1_ehci {
-	status = "disabled";
-};
-
-&usb_host1_ohci {
-	status = "disabled";
-};
-
-&usb_host1_xhci {
-	dr_mode = "host";//自动检测
-	snps,dis_enblslpm_quirk;
-	snps,dis-u2-freeclk-exists-quirk;
-	snps,dis-del-phy-power-chg-quirk;
-	snps,dis-tx-ipgap-linecheck-quirk;
-	snps,dis_rxdet_inp3_quirk;
-	snps,xhci-trb-ent-quirk;
-	snps,parkmode-disable-ss-quirk;
-	status = "disabled";
 };
 
 &usb2phy0 {
 	status = "okay";
 };
 
-&usb2phy0_host {
+&u2phy0_host {
 	phy-supply = <&vcc5v0_host>;
 	status = "okay";
 };
 
-&usb2phy0_otg {
+&u2phy0_otg {
 	phy-supply = <&vcc5v0_otg>;
 	status = "okay";
 };
 
-&usb2phy1 {
+&usbdrd_dwc3 {
+	dr_mode = "host";
+	extcon = <&usb2phy0>;
 	status = "okay";
 };
 
-&usb2phy1_host {
-	phy-supply = <&vcc5v0_host>;
+&usbdrd30 {
 	status = "okay";
 };
 
-&usb2phy1_otg {
-	phy-supply = <&vcc5v0_host>;
+&usbhost_dwc3 {
+	status = "okay";
+};
+
+&usbhost30 {
 	status = "okay";
 };
 
@@ -960,16 +917,74 @@
 	status = "okay";
 };
 
+&dfi {
+	status = "okay";
+};
+
+&dmc {
+	center-supply = <&vdd_logic>;
+	status = "okay";
+};
+
 &gpu {
 	mali-supply = <&vdd_gpu>;
 	status = "okay";
 };
 
-&vpu {
+&bus_npu {
+	bus-supply = <&vdd_logic>;
+	pvtm-supply = <&vdd_cpu>;
 	status = "okay";
 };
 
-&rga {
+&jpegd {
+	status = "okay";
+};
+
+&jpegd_mmu {
+	status = "okay";
+};
+
+&mpp_srv {
+	status = "okay";
+};
+
+&rk_rga {
+	status = "okay";
+};
+
+&rkvdec {
+	status = "okay";
+};
+
+&rkvdec_mmu {
+	status = "okay";
+};
+
+&rkvenc {
+	venc-supply = <&vdd_logic>;
+	status = "okay";
+};
+
+&rkvenc_mmu {
+	status = "okay";
+};
+
+&rknpu {
+	rknpu-supply = <&vdd_npu>;
+	mem-supply = <&vdd_npu>;
+	status = "okay";
+};
+
+&rknpu_mmu {
+	status = "okay";
+};
+
+&vdpu {
+	status = "okay";
+};
+
+&vdpu_mmu {
 	status = "okay";
 };
 
@@ -977,7 +992,7 @@
 	status = "okay";
 };
 
-&vop {
+&vepu_mmu {
 	status = "okay";
 };
 
@@ -995,6 +1010,7 @@
 	status = "okay";
 };
 
+//dwmmc@fe000000
 &sdmmc2 {
 	max-frequency = <150000000>;
 	fifo-depth = <256>;
@@ -1030,15 +1046,11 @@
 	status = "disabled";
 };
 
-&csi_dphy {
+&combphy0_us {
 	status = "okay";
 };
 
-&combphy0 {
-	status = "okay";
-};
-
-&csi_dphy {
+&csi2_dphy_hw {
 	status = "okay";
 };
 
