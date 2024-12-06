@@ -324,11 +324,10 @@
 		io-channel-names = "buttons";
 		keyup-threshold-microvolt = <1800000>;
 		poll-interval = <100>;
-		status = "okay";
-		volumeup-key {
-			label = "volume up";
-			linux,code = <KEY_VOLUMEUP>;
-			press-threshold-microvolt = <1500000>;
+		recovery-key {
+			label = "F12";
+			linux,code = <KEY_F12>;
+			press-threshold-microvolt = <1750>;
 		};
 	};
 
