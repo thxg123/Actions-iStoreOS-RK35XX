@@ -800,16 +800,11 @@
 	status = "okay";
 };
 
-&xpcs {
-	status = "okay";
-};
-
 // form lintel,使能,sgmii 千兆.
 &gmac1 {
 	status = "disabled";
 	phy-mode = "sgmii";
 	rockchip,pipegrf = <&pipegrf>;
-	rockchip,xpcs = <&xpcs>;
 	//不用reset
 	//snps,reset-gpio = <&gpio2 RK_PC2 GPIO_ACTIVE_LOW>;
 	//snps,reset-active-low;
