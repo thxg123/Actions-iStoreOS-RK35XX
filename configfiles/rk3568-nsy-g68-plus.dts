@@ -156,7 +156,6 @@
 		pinctrl-0 = <&wifi_enable_h>;
 		post-power-on-delay-ms = <200>;
 		reset-gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_LOW>;
-		status = "okay";
 	};
 
 	vcc1v8_adc: vcc1v8-adc {
@@ -1008,7 +1007,7 @@
 	non-removable;
 	pinctrl-names = "default";
 	pinctrl-0 = <&sdmmc2m0_bus4 &sdmmc2m0_cmd &sdmmc2m0_clk>;
-	status = "disabled";
+	status = "okay";
 };
 
 //dwmmc@fe2b0000
@@ -1025,7 +1024,7 @@
 	vqmmc-supply = <&vccio_sd>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
-	status = "disabled";
+	status = "okay";
 };
 
 &combphy0_us {
