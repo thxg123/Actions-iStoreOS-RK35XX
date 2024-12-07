@@ -607,22 +607,6 @@
 				};
 			};
 		};
-	/*
-		codec {
-			#sound-dai-cells = <1>;
-			compatible = "rockchip,rk809-codec", "rockchip,rk817-codec";
-			clocks = <0x21 0x1a3>;
-			clock-names = "mclk";
-			assigned-clocks = <0x21 0x1a3 0x21 0x1a6>;
-			assigned-clock-rates = <12288000>;
-			assigned-clock-parents = <0x21 0x48 0x21 0x48>;
-			pinctrl-names = "default";
-			pinctrl-0 = <0x3c>;
-			hp-volume = <0x14>;
-			spk-volume = <3>;
-			mic-in-differential;
-			status = "okay";
-		};*/
 	};
 };
 
