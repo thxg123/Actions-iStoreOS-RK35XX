@@ -1003,11 +1003,10 @@
 	cap-sdio-irq;
 	keep-power-in-suspend;
 	sd-uhs-sdr104;
-	mmc-pwrseq = <&sdio_pwrseq>;
 	non-removable;
 	pinctrl-names = "default";
 	pinctrl-0 = <&sdmmc2m0_bus4 &sdmmc2m0_cmd &sdmmc2m0_clk>;
-	status = "okay";
+	status = "disabled";
 };
 
 //dwmmc@fe2b0000
@@ -1024,7 +1023,7 @@
 	vqmmc-supply = <&vccio_sd>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
-	status = "okay";
+	status = "disabled";
 };
 
 &combphy0_us {
