@@ -100,29 +100,8 @@ jobs:
       env:
         FEEDS_CONF_PATH: ${{ matrix.ARCHITECTURE }}/${{ env.FEEDS_CONF }}
       run: |
-        echo "CONFIG_PACKAGE_kmod-brcmfmac=n
-        CONFIG_PACKAGE_kmod-mt76-connac=n
-        CONFIG_PACKAGE_kmod-mt76-core=n
-        CONFIG_PACKAGE_kmod-mt76-usb=n
-        CONFIG_PACKAGE_kmod-mt7615-common=n
-        CONFIG_PACKAGE_kmod-mt7615-firmware=n
-        CONFIG_PACKAGE_kmod-mt7615e=n
-        CONFIG_PACKAGE_kmod-mt7663-firmware-ap=n
-        CONFIG_PACKAGE_kmod-mt7663-usb-sdio=n
-        CONFIG_PACKAGE_kmod-mt7663u=n
-        CONFIG_PACKAGE_kmod-mt76x0-common=n
-        CONFIG_PACKAGE_kmod-mt76x02-common=n
-        CONFIG_PACKAGE_kmod-mt76x02-usb=n
-        CONFIG_PACKAGE_kmod-mt76x0u=n
-        CONFIG_PACKAGE_kmod-mt76x2-common=n
-        CONFIG_PACKAGE_kmod-mt76x2u=n
-        CONFIG_PACKAGE_kmod-mt7915e=n
-        CONFIG_PACKAGE_kmod-mt7916-firmware=n
-        CONFIG_PACKAGE_kmod-mt7921-common=n
-        CONFIG_PACKAGE_kmod-mt7921-firmware=n
-        CONFIG_PACKAGE_kmod-mt7921e=n
-        CONFIG_PACKAGE_kmod-mt7921u=n
-        CONFIG_PACKAGE_kmod-mt7922-firmware=n" >> $FEEDS_CONF_PATH
+        getconfig=$(cat ${GITHUB_WORKSPACE}/configfiles/nowifi.txt)
+        echo "$content" >> $FEEDS_CONF_PATH
         cat $FEEDS_CONF_PATH
         [ -e $FEEDS_CONF_PATH ] && mv $FEEDS_CONF_PATH openwrt/$FEEDS_CONF
         chmod +x $DIY_P1_SH
