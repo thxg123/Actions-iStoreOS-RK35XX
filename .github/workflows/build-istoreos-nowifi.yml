@@ -101,7 +101,7 @@ jobs:
         FEEDS_CONF_PATH: ${{ matrix.ARCHITECTURE }}/${{ env.FEEDS_CONF }}
       run: |
         getconfig=$(cat ${GITHUB_WORKSPACE}/configfiles/nowifi.txt)
-        echo "$content" >> $FEEDS_CONF_PATH
+        echo "$getconfig" >> $FEEDS_CONF_PATH
         cat $FEEDS_CONF_PATH
         [ -e $FEEDS_CONF_PATH ] && mv $FEEDS_CONF_PATH openwrt/$FEEDS_CONF
         chmod +x $DIY_P1_SH
