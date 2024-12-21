@@ -100,9 +100,6 @@ jobs:
       env:
         FEEDS_CONF_PATH: ${{ matrix.ARCHITECTURE }}/${{ env.FEEDS_CONF }}
       run: |
-        getconfig=$(cat ${GITHUB_WORKSPACE}/configfiles/nowifi.txt)
-        echo "$getconfig" >> $FEEDS_CONF_PATH
-        cat $FEEDS_CONF_PATH
         [ -e $FEEDS_CONF_PATH ] && mv $FEEDS_CONF_PATH openwrt/$FEEDS_CONF
         chmod +x $DIY_P1_SH
         cd openwrt
@@ -118,6 +115,9 @@ jobs:
       env:
         CONFIG_FILE_PATH: ${{ matrix.ARCHITECTURE }}/${{ env.CONFIG_FILE }}
       run: |
+        getconfig=$(cat ${GITHUB_WORKSPACE}/configfiles/nowifi.txt)
+        echo "$getconfig" >> CONFIG_FILE_PATH
+        cat CONFIG_FILE_PATH
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE_PATH ] && mv $CONFIG_FILE_PATH openwrt/$CONFIG_FILE
         chmod +x $DIY_P2_SH
