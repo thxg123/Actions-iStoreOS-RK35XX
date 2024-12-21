@@ -115,11 +115,11 @@ jobs:
       env:
         CONFIG_FILE_PATH: ${{ matrix.ARCHITECTURE }}/${{ env.CONFIG_FILE }}
       run: |
-        getconfig=$(cat ${GITHUB_WORKSPACE}/configfiles/nowifi.txt)
-        echo "$getconfig" >> CONFIG_FILE_PATH
-        cat CONFIG_FILE_PATH
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE_PATH ] && mv $CONFIG_FILE_PATH openwrt/$CONFIG_FILE
+        getconfig=$(cat ${GITHUB_WORKSPACE}/configfiles/nowifi.txt)
+        echo "$getconfig" >> openwrt/$CONFIG_FILE
+        cat openwrt/$CONFIG_FILE
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
