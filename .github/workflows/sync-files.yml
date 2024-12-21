@@ -19,6 +19,7 @@ jobs:
         rm -f ./rk35xx/.config
         wget -O ./rk35xx/feeds.conf https://fw0.koolcenter.com/iStoreOS/station-p2/feeds.conf --no-check-certificate
         wget -O ./rk35xx/.config https://fw0.koolcenter.com/iStoreOS/station-p2/config.buildinfo --no-check-certificate
+        cp -f ./rk35xx/.config ./rk35xx/.config_nowifi
 
         FILE_PATH="./rk35xx/.config"
         if [ -f "$FILE_PATH" ] && [ -s "$FILE_PATH" ]; then
@@ -42,7 +43,7 @@ jobs:
            # 清除.config配置文件里面重复的配置项
            configdata2=$(cat ./rk35xx/.config)
            echo "$configdata2" | awk '!seen[$0]++' > ./rk35xx/.config
-           
+  
            content=$(cat ${GITHUB_WORKSPACE}/configfiles/config_data_nowifi.txt)
            configdata=$(echo "$content" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')
            sed -i "/CONFIG_TARGET_DEVICE_rockchip_.*=.*/d" ./rk35xx/.config_nowifi
