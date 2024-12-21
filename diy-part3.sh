@@ -7,6 +7,10 @@
 # Blog: https://p3terx.com
 #===============================================
 
+getconfig=$(cat ${GITHUB_WORKSPACE}/configfiles/nowifi.txt)
+echo "$getconfig" >> .config
+cat .config
+
 
 # update ubus git HEAD
 cp -f $GITHUB_WORKSPACE/configfiles/ubus_Makefile package/system/ubus/Makefile
