@@ -7,6 +7,7 @@
 # Blog: https://p3terx.com
 #===============================================
 
+# 不集成联发科WiFi驱动
 getconfig=$(cat ${GITHUB_WORKSPACE}/configfiles/nowifi.txt)
 echo "$getconfig" >> .config
 
