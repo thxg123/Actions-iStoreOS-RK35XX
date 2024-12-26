@@ -1639,7 +1639,7 @@
 		power-domains = <0x23 0x06>;
 		operating-points-v2 = <0x5e>;
 		iommus = <0x5f>;
-		status = "okay";
+		status = "disabled";
 		rknpu-supply = <0x60>;
 	};
 
@@ -1765,7 +1765,7 @@
 		clock-names = "aclk\0iface";
 		power-domains = <0x23 0x06>;
 		#iommu-cells = <0x00>;
-		status = "okay";
+		status = "disabled";
 		phandle = <0x5f>;
 	};
 
