@@ -11,7 +11,7 @@
 cp -f $GITHUB_WORKSPACE/configfiles/adc-keys.txt adc-keys.txt
 ! grep -q 'adc-keys {' package/boot/uboot-rk35xx/src/arch/arm/dts/rk3568-easepi.dts && sed -i '/\"rockchip,rk3568\";/r adc-keys.txt' package/boot/uboot-rk35xx/src/arch/arm/dts/rk3568-easepi.dts
 
-# 不集成联发科WiFi驱动
+# 不集成联发科开源WiFi驱动
 getconfig=$(cat ${GITHUB_WORKSPACE}/configfiles/nowifi.txt)
 echo "$getconfig" >> .config
 
@@ -59,10 +59,10 @@ cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
 
 
 # 轮询检查ubus服务是否崩溃，崩溃就重启ubus服务，只针对rk3566机型，如黑豹X2和荐片TV盒子。
-cp -f $GITHUB_WORKSPACE/configfiles/httpubus package/base-files/files/etc/init.d/httpubus
-cp -f $GITHUB_WORKSPACE/configfiles/ubus-examine.sh package/base-files/files/bin/ubus-examine.sh
-chmod 755 package/base-files/files/etc/init.d/httpubus
-chmod 755 package/base-files/files/bin/ubus-examine.sh
+# cp -f $GITHUB_WORKSPACE/configfiles/httpubus package/base-files/files/etc/init.d/httpubus
+# cp -f $GITHUB_WORKSPACE/configfiles/ubus-examine.sh package/base-files/files/bin/ubus-examine.sh
+# chmod 755 package/base-files/files/etc/init.d/httpubus
+# chmod 755 package/base-files/files/bin/ubus-examine.sh
 
 
 
