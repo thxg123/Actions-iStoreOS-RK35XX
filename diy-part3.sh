@@ -113,10 +113,8 @@ tar -xvf rtl8367b.tar.gz
 
 
 
-# rm -f target/linux/rockchip/rk35xx/base-files/lib/board/init.sh
 # cp -f $GITHUB_WORKSPACE/configfiles/init.sh target/linux/rockchip/rk35xx/base-files/lib/board/init.sh
 
-rm -f target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
 cp -f $GITHUB_WORKSPACE/configfiles/02_network target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
 
 
